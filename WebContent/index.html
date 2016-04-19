@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+</head>
+<script type="text/javascript" src="script.js"></script>
+    <div id="error_list">
+    
+    </div>
+    <br>
+    <br>
+    <body>
+        <form>
+        Name:        <input type="text" 
+                            name="name"  
+                            onfocusout="nameFocusOutHandler(this)" 
+                            id="name">
+        <span class="asterisc" id="asterisc_name">*</span>
+        <br>
+        <br>
+        Last Name:   <input type="text" 
+                            name="lastname" 
+                            id="lastname"
+                            onfocusout="nameFocusOutHandler(this)">
+       
+        <span class="asterisc" id="asterisc_lastname">*</span>
+        <br>
+        <br>
+        E-Mail:         <input   type="email" 
+                                 name="email"
+                                 id="email"
+                                 onfocusout="nameFocusOutHandler(this)">
+            
+        <span class="asterisc" id="asterisc_email">*</span>
+        <br>
+        <br>
+        Date of birth:         <input type="date"                
+                                 name="dateofbirth"  
+                                 id="dateofbirth"
+                                 onfocusout="nameFocusOutHandler(this)">
+        <br>
+        <br>
+        Password:         <input type="password" name="password"
+                                 id="password"
+                                 onfocusout="nameFocusOutHandler(this)">
+        <span class="asterisc" id="asterisc_password">*</span>
+        <br>
+        <br>
+        Retype Password: <input type="password" 
+                                name="password_again"
+                                id="password_again"
+                                onfocusout="nameFocusOutHandler(this)">
+        <span class="asterisc" id="asterisc_password_again">*</span>
+        <br>
+        <br>
+        Description:     <textarea rows="3" cols="20"
+                                type="textarea" size="100" id="description"
+                                name="description"
+                                onfocusout="nameFocusOutHandler(this)" >
+                                Enter your text here...
+                        </textarea>
+        <br>
+        <br>
+        <button type="button" id="submit_button" onclick="submitForm()" >Submit form</button>
+        </form>
+    </body>
+
+</html>
