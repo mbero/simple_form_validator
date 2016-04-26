@@ -5,7 +5,9 @@
 <title>Title of the document</title>
 </head>
 <script type="text/javascript" src="script.js"></script>
-    <div id="error_list">
+<link rel="stylesheet" href="style.css">
+    
+    <div id="error_list" hidden="true">
     
     </div>
     <br>
@@ -16,7 +18,7 @@
                             name="name"  
                             onfocusout="nameFocusOutHandler(this)" 
                             id="name">
-        <span class="asterisc" id="asterisc_name">*</span>
+        <span class="asterisc" id="asterisc_name" hidden="true">*</span>
         <br>
         <br>
         Last Name:   <input type="text" 
@@ -24,7 +26,7 @@
                             id="lastname"
                             onfocusout="nameFocusOutHandler(this)">
        
-        <span class="asterisc" id="asterisc_lastname">*</span>
+        <span class="asterisc" id="asterisc_lastname" hidden="true">*</span>
         <br>
         <br>
         E-Mail:         <input   type="email" 
@@ -32,34 +34,36 @@
                                  id="email"
                                  onfocusout="nameFocusOutHandler(this)">
             
-        <span class="asterisc" id="asterisc_email">*</span>
+        <span class="asterisc" id="asterisc_email" hidden="true">*</span>
         <br>
         <br>
         Date of birth:         <input type="date"                
                                  name="dateofbirth"  
                                  id="dateofbirth"
                                  onfocusout="nameFocusOutHandler(this)">
+        <span class="asterisc" id="asterisc_dateofbirth" hidden="true">*</span>
         <br>
         <br>
         Password:         <input type="password" name="password"
                                  id="password"
                                  onfocusout="nameFocusOutHandler(this)">
-        <span class="asterisc" id="asterisc_password">*</span>
+        <span class="asterisc" id="asterisc_password" hidden="true">*</span>
         <br>
         <br>
         Retype Password: <input type="password" 
                                 name="password_again"
                                 id="password_again"
                                 onfocusout="nameFocusOutHandler(this)">
-        <span class="asterisc" id="asterisc_password_again">*</span>
+        <span class="asterisc" id="asterisc_password_again" hidden="true">*</span>
+            
         <br>
         <br>
-        Description:     <textarea rows="3" cols="20"
+        Description:     <input type="text" rows="3" cols="20"
                                 type="textarea" size="100" id="description"
                                 name="description"
                                 onfocusout="nameFocusOutHandler(this)" >
-                                Enter your text here...
-                        </textarea>
+        <span class="asterisc" id="asterisc_description" hidden="true">*</span>
+            
         <br>
         <br>
         <button type="button" id="submit_button" onclick="submitForm()" >Submit form</button>

@@ -39,7 +39,8 @@ function nameFieldValidator(param)
     var fieldIsEmpty = checkIfFieldIsEmpty(param);
     if(fieldIsEmpty)
     {
-        arrayOfValidationErrors.push(new ValidationError('Name','Name field is empty !'))
+        arrayOfValidationErrors.push(new ValidationError('Name','Name field is empty !'));
+        showAsterisc('asterisc_name');
     }
 }
 /*
@@ -51,6 +52,7 @@ function lastNameFieldValidator(param)
     if(fieldIsEmpty)
     {
         arrayOfValidationErrors.push(new ValidationError('Last Name','Last Name field is empty !'))
+        showAsterisc('asterisc_lastname');
     }
 }
 /*
@@ -61,7 +63,8 @@ function dateOfBirthValidator(param)
     var fieldIsEmpty = checkIfFieldIsEmpty(param);
     if(fieldIsEmpty)
     {
-        arrayOfValidationErrors.push(new ValidationError('Date of birth','Date of birth field is empty !'))
+        arrayOfValidationErrors.push(new ValidationError('Date of birth','Date of birth field is empty !'));
+        showAsterisc('asterisc_dateofbirth');
     }
 }
 /*
@@ -74,11 +77,12 @@ function emailFieldValidator(param)
     var fieldIsEmpty = checkIfFieldIsEmpty(param);
     if(fieldIsEmpty)
     {
-        arrayOfValidationErrors.push(new ValidationError('Email','Email field is empty !'))
+        arrayOfValidationErrors.push(new ValidationError('Email','Email field is empty !'));
     }
     if(emailIsValidated==false)
     {
-        arrayOfValidationErrors.push(new ValidationError('Email','Email is not valid !'))
+        arrayOfValidationErrors.push(new ValidationError('Email','Email is not valid !'));
+        showAsterisc('asterisc_email');
     }
 }
 /*
@@ -93,16 +97,18 @@ function passwordValidator(param)
     var fieldContainsNumber = checkIfHasNumber(param);
     if(fieldIsEmpty)
     {
-        arrayOfValidationErrors.push(new ValidationError('Password','Password field is empty !'))
+        arrayOfValidationErrors.push(new ValidationError('Password','Password field is empty !'));
     }
     if(fieldHasproperLength!=true)
     {
         
-        arrayOfValidationErrors.push(new ValidationError('Password','Password field has not enough characters !'))
+        arrayOfValidationErrors.push(new ValidationError('Password','Password field has not enough characters !'));
+        showAsterisc('asterisc_password');
     }
     if(fieldContainsNumber!=true)
     {
-        arrayOfValidationErrors.push(new ValidationError('Password','Password field has not even one number !'))
+        arrayOfValidationErrors.push(new ValidationError('Password','Password field has not even one number !'));
+        showAsterisc('asterisc_password');
     }
 }
 /*
@@ -113,7 +119,7 @@ function retypePasswordValidator(param)
     var fieldIsEmpty = checkIfFieldIsEmpty(param);
     if(fieldIsEmpty)
     {
-        arrayOfValidationErrors.push(new ValidationError('Retype password', 'Retype password field could not be empty !'))
+        arrayOfValidationErrors.push(new ValidationError('Retype password', 'Retype password field could not be empty !'));
     }
     else
     {
@@ -121,7 +127,8 @@ function retypePasswordValidator(param)
         var passwordRetyped = document.getElementById('password_again').value;
         if(checkIfStringsAreEqual(passwordValue, passwordRetyped)!=true)
         {
-            arrayOfValidationErrors.push(new ValidationError('Retype password', 'Retype password must have the same value as password field !'))        
+            arrayOfValidationErrors.push(new ValidationError('Retype password', 'Retype password must have the same value as password field !'));
+            showAsterisc('asterisc_password_again');
         }
     }
 }
@@ -134,6 +141,7 @@ function descriptionValidator(param)
     if(fieldIsEmpty)
     {
         arrayOfValidationErrors.push(new ValidationError('Description','Description field is empty !'))
+        showAsterisc('asterisc_description')
     }
     
 }
@@ -164,11 +172,18 @@ function checkIfFieldIsEmpty(field)
     
     if(fieldValue==='')    
     {
-        field.style.backgroundColor="red";
+         if(field==='description')
+        {
+            document.getElementById('description').style="background-color : red;";
+        }
+        else
+        {
+            field.style.backgroundColor="red";
+        }
         emptyField=true;
     }
     else
-    {   
+    {  
         //Right now we check which
         field.style.backgroundColor="white";
     }
@@ -194,9 +209,9 @@ function checkIfHasNumber(string) {
 
 //----------------------------------------------------------------------
 
-function showAsterisc()
+function showAsterisc(asterisc_id)
 {
-    document.getElementById('asterisc').hidden=false;
+    document.getElementById(asterisc_id).hidden=false;
 }
 
 function hideAsterisc()
@@ -206,16 +221,20 @@ function hideAsterisc()
 
 function submitForm()
 {    
+    document.getElementById('error_list').hidden=false;
     fillGivenDivWithErrorsText('error_list');   
 }
 
 function fillGivenDivWithErrorsText(divid)
 {
     var errorsString='';
-    for(var i=0; i<arrayOfValidationErrors.length; i++)
+    if(document.getElementById(divid).innerHTML!='')
     {
-        var currentErrorMessage = arrayOfValidationErrors[i].validationErrorMessage;
-        errorsString+=currentErrorMessage+" "; 
+        for(var i=0; i<arrayOfValidationErrors.length; i++)
+        {
+            var currentErrorMessage = arrayOfValidationErrors[i].validationErrorMessage;
+            errorsString+=currentErrorMessage+" "; 
+        }
     }
     document.getElementById(divid).innerHTML=errorsString;
 }
