@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+</head>
+<script type="text/javascript" src="script.js"></script>
+<link rel="stylesheet" href="style.css">
+    <body>
+    <h1>Table managment example</h1>
+<button type="button" id="add_row" onclick="addNewRecordToTable()">Add new row to table</button>
+        <br>
+        <br>
+<table class="demo" id="table">
+	<caption>Table </caption>
+	<thead>
+	<tr>
+        <th>Id</th>
+		<th>Column 1</th>
+		<th>Column 2</th>
+        <th>Edit Row</th>
+        <th>Delete Row</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+        <td>1</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><button type="button" 
+                    onclick="removeRecordFromTable(this)"
+                    id="delete_row_button1(this)"
+                    value="0"
+                    >Delete row</button></td>
+        
+	</tr>
+	<tr>
+        <td>2</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><button type="button" id="delete_row_button1(this)" value="1">Delete row</button></td>
+	</tr>
+	<tr>
+        <td>3</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><button type="button" id="delete_row_button1(this)" value="2">Delete row</button></td>
+	</tr>
+	<tr>
+        <td>4</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><button type="button" id="delete_row_button1(this)" value="3">Delete row</button></td>
+	</tr>
+	<tbody>
+</table>
+    </body>
+
+</html>
