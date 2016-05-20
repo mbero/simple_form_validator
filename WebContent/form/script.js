@@ -220,8 +220,27 @@ function hideAsterisc()
 }
 
 function submitForm()
-{    
-    document.getElementById('error_list').hidden=false;
+{	
+	arrayOfValidationErrors = [];
+	document.getElementById('error_list').hidden=false;
+	document.getElementById('error_list').innterHTML="";
+	//Validators
+		var nameField = document.getElementById('name');
+		nameFieldValidator(nameField);
+		var lastnameField = document.getElementById('lastname');
+        lastNameFieldValidator(lastnameField);
+		var emailField = document.getElementById('email');
+        emailFieldValidator(emailField);
+		var dateofbirthField = document.getElementById('dateofbirth');
+        dateOfBirthValidator(dateofbirthField);
+        var passwordField = document.getElementById('password');
+        passwordValidator(passwordField);
+        var password_againField = document.getElementById('password_again');
+        retypePasswordValidator(password_againField);
+        var descriptionField = document.getElementById('description');
+        descriptionValidator(descriptionField);
+
+	//-------------------------------------------------
     fillGivenDivWithErrorsText('error_list');   
 }
 
