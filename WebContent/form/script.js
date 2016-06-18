@@ -73,8 +73,8 @@ function dateOfBirthValidator(param)
 */
 function emailFieldValidator(param)
 {
-    var emailIsValidated = validateEmail(param);
-    var fieldIsEmpty = checkIfFieldIsEmpty(param);
+    var emailIsValidated = validateEmail(param.value);
+    var fieldIsEmpty = checkIfFieldIsEmpty(param.value);
     if(fieldIsEmpty)
     {
         arrayOfValidationErrors.push(new ValidationError('Email','Email field is empty !'));
@@ -84,7 +84,23 @@ function emailFieldValidator(param)
         arrayOfValidationErrors.push(new ValidationError('Email','Email is not valid !'));
         showAsterisc('asterisc_email');
     }
+	if(emailIsValidated==true)
+	{
+		removeErrorsFromArrayOfValidationErrors("Email");	
+	}
 }
+function removeErrorsFromArrayOfValidationErrors(fieldType)
+{
+		for(i=0; i<arrayOfValidationErrors.length; i++)
+		{
+				var currentValidationError = arrayOfValidationErrors[i];
+				if(currentValidationError.fieldType===fieldType)
+				{
+						arrayOfValidationErrors.splice(i);
+				}
+		}
+}
+
 /*
     - Should not be empty
     - Should have at least 8 characters
@@ -93,7 +109,7 @@ function emailFieldValidator(param)
 function passwordValidator(param)
 {
     var fieldIsEmpty = checkIfFieldIsEmpty(param);
-    var fieldHasproperLength = checkIfLengthOfGivenString(param, 8);
+    var fieldHasproperLength = checkIfLengthOfGivenPasswordIsProper(param, 8);
     var fieldContainsNumber = checkIfHasNumber(param);
     if(fieldIsEmpty)
     {
@@ -168,8 +184,15 @@ function checkIfFieldIsEmpty(field)
 {
     var emptyField = false;
     var field = document.getElementById(field.name);
-    var fieldValue = field.value;
-    
+	var fieldValue;
+	if(field==null)
+	{
+		fieldValue='';
+	}
+	else
+	{
+     fieldValue = field.value;
+    }
     if(fieldValue==='')    
     {
          if(field==='description')
@@ -178,8 +201,11 @@ function checkIfFieldIsEmpty(field)
         }
         else
         {
-            field.style.backgroundColor="red";
-        }
+			if(field!==null)
+			{
+				field.style.backgroundColor="red";
+			}
+		}
         emptyField=true;
     }
     else
@@ -191,9 +217,9 @@ function checkIfFieldIsEmpty(field)
     return emptyField;
 }
 
-function checkIfLengthOfGivenString(string, amount)
+function checkIfLengthOfGivenPasswordIsProper(string, amount)
 {
-    if(string.length==amount)
+    if(string.value.length>=amount)
     {
         return true;    
     }
@@ -204,7 +230,7 @@ function checkIfLengthOfGivenString(string, amount)
 }
 
 function checkIfHasNumber(string) {
-  return (/\d/.test(string));
+  return (/\d/.test(string.value));
 }
 
 //----------------------------------------------------------------------
@@ -223,7 +249,7 @@ function submitForm()
 {	
 	arrayOfValidationErrors = [];
 	document.getElementById('error_list').hidden=false;
-	document.getElementById('error_list').innterHTML="";
+	document.getElementById('error_list').innerHTML="";
 	//Validators
 		var nameField = document.getElementById('name');
 		nameFieldValidator(nameField);
@@ -255,7 +281,15 @@ function fillGivenDivWithErrorsText(divid)
             errorsString+=currentErrorMessage+" "; 
         }
     }
-    document.getElementById(divid).innerHTML=errorsString;
+	if(errorsString!=='')
+	{
+		document.getElementById(divid).innerHTML=errorsString;
+	}
+	if(errorsString=='')
+	{
+		document.getElementById(divid).style.display = 'none';
+		//alert("Form is validated properly");
+	}
 }
 
 function addNewValidationError(validationError)
